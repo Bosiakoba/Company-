@@ -235,6 +235,15 @@ const IndustrySection = () => {
 
 const FeaturedProjects = () => {
   const featured = [
+    /*{
+      title: "Learnix",
+      highlight: "Learnix",
+      description: "A comprehensive e-learning ecosystem tailored for higher education institutions. Streamlines course delivery, student engagement, and academic administrative workflows in a modern digital environment.",
+      tags: ["E-Learning", "LMS", "Education", "Higher Ed"],
+      link: "https://learnix-one.vercel.app/",
+      linkText: "VISIT PLATFORM",
+      image: "/learnix.png"
+    },*/
     {
       title: "Easy Employ",
       highlight: "Employ",

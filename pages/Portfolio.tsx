@@ -7,6 +7,14 @@ import { ExternalLink, ArrowUpRight } from 'lucide-react';
 const Portfolio = () => {
   const projects = [
     {
+      title: "Learnix",
+      category: "E-LEARNING",
+      image: "/learnix.png",
+      description: "A comprehensive e-learning ecosystem tailored for higher education institutions. Streamlines course delivery and academic administrative workflows.",
+      link: "https://learnix-one.vercel.app/",
+      linkText: "VISIT PLATFORM"
+    },
+    {
       title: "Easy Employ",
       category: "RECRUITMENT PLATFORM",
       image: "/easyemploy.png",

@@ -7,6 +7,14 @@ import { ExternalLink, ArrowUpRight } from 'lucide-react';
 const Portfolio = () => {
   const projects = [
     {
+      title: "Easy Employ",
+      category: "RECRUITMENT PLATFORM",
+      image: "/easyemploy.png",
+      description: "A dedicated employment platform bridging the gap between teachers and schools. Modern, efficient, and designed to streamline the recruitment process in the education sector.",
+      link: "https://easyemploy.vercel.app/",
+      linkText: "VISIT PLATFORM"
+    },
+    {
       title: "School Management",
       category: "SaaS / ERP",
       image: "/school-mgmt.png",

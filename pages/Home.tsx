@@ -236,6 +236,15 @@ const IndustrySection = () => {
 const FeaturedProjects = () => {
   const featured = [
     {
+      title: "Easy Employ",
+      highlight: "Employ",
+      description: "A dedicated employment platform bridging the gap between teachers and schools. Designed to streamline the recruitment process within the education sector through efficient matching and real-time communication.",
+      tags: ["Web App", "Recruitment", "Education", "Platform"],
+      link: "https://easyemploy.vercel.app/",
+      linkText: "VISIT PLATFORM",
+      image: "/easyemploy.png"
+    },
+    {
       title: "School Management",
       highlight: "Management",
       description: "A sophisticated, multi-tenant school management system designed for global educational institutions. Featuring powerful administrative tools, automated student tracking, and secure financial management modules.",

@@ -89,8 +89,8 @@ const Footer = () => {
         <div className="pt-12 border-t border-border flex flex-col md:flex-row items-center justify-between gap-8">
           <p className="text-foreground/30 text-[10px] font-bold tracking-[0.2em]">© 2026 YOUNG FUTURE TECH. ALL RIGHTS RESERVED.</p>
           <div className="flex gap-10">
-            <a href="#" className="text-foreground/30 text-[10px] font-bold tracking-[0.2em] hover:text-primary">PRIVACY POLICY</a>
-            <a href="#" className="text-foreground/30 text-[10px] font-bold tracking-[0.2em] hover:text-primary">TERMS OF SERVICE</a>
+            <Link to="/privacy" className="text-foreground/30 text-[10px] font-bold tracking-[0.2em] hover:text-primary transition-colors">PRIVACY POLICY</Link>
+            <Link to="/terms" className="text-foreground/30 text-[10px] font-bold tracking-[0.2em] hover:text-primary transition-colors">TERMS OF SERVICE</Link>
           </div>
         </div>
       </div>

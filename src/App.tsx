@@ -8,6 +8,8 @@ import About from '../pages/About';
 import Services from '../pages/Services';
 import Portfolio from '../pages/Portfolio';
 import Contact from '../pages/Contact';
+import PrivacyPolicy from '../pages/PrivacyPolicy';
+import TermsOfService from '../pages/TermsOfService';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -36,6 +38,8 @@ const AnimatedRoutes = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
         </Routes>
       </motion.div>
     </AnimatePresence>

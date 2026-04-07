@@ -16,10 +16,10 @@ import { Link } from 'react-router-dom';
 
 const About = () => {
   const stats = [
-    { label: "YEARS EXP", value: "8+" },
-    { label: "PROJECTS", value: "150+" },
-    { label: "CLIENTS", value: "40+" },
-    { label: "COUNTRIES", value: "12" },
+    { label: "YEARS EXP", value: "4+" },
+    { label: "PROJECTS", value: "30+" },
+    { label: "CLIENTS", value: "20+" },
+    { label: "COUNTRIES", value: "5" },
   ];
 
   const values = [

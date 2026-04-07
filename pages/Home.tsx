@@ -39,7 +39,7 @@ const Hero = () => {
             >
               <div className="flex items-center gap-4 mb-8">
                 <Badge variant="outline" className="rounded-none border-foreground text-[10px] font-bold tracking-[0.2em] px-4 py-1">
-                  EST. 2026
+                  EST. 2022
                 </Badge>
                 <div className="h-[1px] w-20 bg-foreground/20" />
                 <span className="text-[10px] font-bold tracking-[0.2em] text-foreground/50 uppercase">Digital Transformation Agency</span>
@@ -235,15 +235,6 @@ const IndustrySection = () => {
 
 const FeaturedProjects = () => {
   const featured = [
-    /*{
-      title: "Learnix",
-      highlight: "Learnix",
-      description: "A comprehensive e-learning ecosystem tailored for higher education institutions. Streamlines course delivery, student engagement, and academic administrative workflows in a modern digital environment.",
-      tags: ["E-Learning", "LMS", "Education", "Higher Ed"],
-      link: "https://learnix-one.vercel.app/",
-      linkText: "VISIT PLATFORM",
-      image: "/learnix.png"
-    },*/
     {
       title: "Easy Employ",
       highlight: "Employ",

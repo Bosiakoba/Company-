@@ -236,6 +236,15 @@ const IndustrySection = () => {
 const FeaturedProjects = () => {
   const featured = [
     {
+      title: "School Management",
+      highlight: "Management",
+      description: "A sophisticated, multi-tenant school management system designed for global educational institutions. Featuring powerful administrative tools, automated student tracking, and secure financial management modules.",
+      tags: ["SaaS", "Multi-Tenant", "ERP", "Education"],
+      link: "https://school-management-web-app.vercel.app/login",
+      linkText: "VISIT SAAS PLATFORM",
+      image: "/school-mgmt.png"
+    },
+    {
       title: "Open Audio Web App",
       highlight: "Web",
       description: "The web-based counterpart to the Open Audio mobile platform. A fully responsive music streaming experience accessible from any browser, featuring high-fidelity playback and seamless library synchronization.",

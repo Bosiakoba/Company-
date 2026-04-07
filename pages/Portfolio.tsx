@@ -7,6 +7,14 @@ import { ExternalLink, ArrowUpRight } from 'lucide-react';
 const Portfolio = () => {
   const projects = [
     {
+      title: "School Management",
+      category: "SaaS / ERP",
+      image: "/school-mgmt.png",
+      description: "A sophisticated, multi-tenant school management system designed for global educational institutions. Featuring powerful administrative tools, automated student tracking, and secure financial management modules.",
+      link: "https://school-management-web-app.vercel.app/login",
+      linkText: "VISIT SAAS PLATFORM"
+    },
+    {
       title: "Open Audio Web App",
       category: "WEB APPLICATION",
       image: "https://picsum.photos/seed/openaudio-web/1200/800",
@@ -31,7 +39,7 @@ const Portfolio = () => {
       linkText: "VIEW ON PLAY STORE"
     },
     {
-      title: "Vanguard E-Learning",
+      title: "E-Learning",
       category: "E-LEARNING PLATFORM",
       image: "https://picsum.photos/seed/vanguard/1200/800",
       description: "A comprehensive learning management system for a global education provider, featuring interactive course modules and real-time student tracking."

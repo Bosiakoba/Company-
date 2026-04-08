@@ -1,8 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Twitter, MessageCircle, Github, ArrowRight } from 'lucide-react';
+import { submitLead } from '@/lib/lead';
 
 const Footer = () => {
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterStatus, setNewsletterStatus] = useState('');
+  const [newsletterStatusType, setNewsletterStatusType] = useState<'success' | 'error' | ''>('');
+  const [isSubmittingNewsletter, setIsSubmittingNewsletter] = useState(false);
+
+  const handleNewsletterSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmittingNewsletter(true);
+    setNewsletterStatus('');
+    setNewsletterStatusType('');
+
+    try {
+      await submitLead({
+        kind: 'newsletter',
+        email: newsletterEmail,
+      });
+      setNewsletterStatusType('success');
+      setNewsletterStatus('Thanks for subscribing. We have received your email.');
+      setNewsletterEmail('');
+    } catch (error) {
+      setNewsletterStatusType('error');
+      setNewsletterStatus(error instanceof Error ? error.message : 'We could not submit your email right now.');
+    } finally {
+      setIsSubmittingNewsletter(false);
+    }
+  };
+
   const socials = [
     { icon: Twitter, href: "#" },
     { icon: MessageCircle, href: "https://wa.link/vrmh6x" },
@@ -77,12 +105,30 @@ const Footer = () => {
           <div>
             <h4 className="text-[10px] font-bold tracking-[0.2em] uppercase mb-8">Newsletter</h4>
             <p className="text-sm text-foreground/50 mb-8 font-medium">Stay updated with the latest tech trends and our agency news.</p>
-            <div className="flex gap-0 border-b-2 border-foreground/20 focus-within:border-primary transition-colors">
-              <input type="email" placeholder="Email" className="bg-transparent px-0 py-3 outline-none w-full font-serif italic text-lg" />
-              <button className="text-primary p-2 hover:translate-x-1 transition-transform">
-                <ArrowRight className="w-6 h-6" />
-              </button>
-            </div>
+            <form onSubmit={handleNewsletterSubmit} className="space-y-3">
+              <div className="flex gap-0 border-b-2 border-foreground/20 focus-within:border-primary transition-colors">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={newsletterEmail}
+                  onChange={(event) => setNewsletterEmail(event.target.value)}
+                  className="bg-transparent px-0 py-3 outline-none w-full font-serif italic text-lg"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="text-primary p-2 hover:translate-x-1 transition-transform disabled:opacity-50 disabled:translate-x-0"
+                  disabled={isSubmittingNewsletter}
+                >
+                  <ArrowRight className="w-6 h-6" />
+                </button>
+              </div>
+              {newsletterStatus ? (
+                <p className={`text-xs font-medium ${newsletterStatusType === 'success' ? 'text-primary' : 'text-destructive'}`} role="status">
+                  {newsletterStatus}
+                </p>
+              ) : null}
+            </form>
           </div>
         </div>
         

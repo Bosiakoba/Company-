@@ -16,10 +16,12 @@ function SheetTrigger({
   children,
   ...props
 }: SheetPrimitive.Trigger.Props & { asChild?: boolean }) {
+  const render = asChild ? (children as React.ReactElement) : undefined
+
   return (
     <SheetPrimitive.Trigger
       data-slot="sheet-trigger"
-      render={asChild ? children : undefined}
+      render={render}
       {...props}
     >
       {!asChild && children}
@@ -32,10 +34,12 @@ function SheetClose({
   children,
   ...props
 }: SheetPrimitive.Close.Props & { asChild?: boolean }) {
+  const render = asChild ? (children as React.ReactElement) : undefined
+
   return (
     <SheetPrimitive.Close
       data-slot="sheet-close"
-      render={asChild ? children : undefined}
+      render={render}
       {...props}
     >
       {!asChild && children}

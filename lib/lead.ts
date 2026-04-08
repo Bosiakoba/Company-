@@ -2,9 +2,23 @@ export type ContactLead = {
   kind: 'contact';
   firstName: string;
   lastName: string;
+  companyName?: string;
   email: string;
+  phone?: string;
+  website?: string;
+  country?: string;
+  businessType?: string;
   projectType: string;
-  details?: string[];
+  scope?: string[];
+  goals?: string[];
+  pages?: string[];
+  features?: string[];
+  assets?: string[];
+  stylePreference?: string;
+  timeline?: string;
+  budget?: string;
+  currentWebsite?: string;
+  referenceLinks?: string;
   message: string;
 };
 

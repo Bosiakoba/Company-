@@ -19,9 +19,23 @@ type LeadSubmission =
       kind: 'contact';
       firstName: string;
       lastName: string;
+      companyName?: string;
       email: string;
+      phone?: string;
+      website?: string;
+      country?: string;
+      businessType?: string;
       projectType: string;
-      details?: string[];
+      scope?: string[];
+      goals?: string[];
+      pages?: string[];
+      features?: string[];
+      assets?: string[];
+      stylePreference?: string;
+      timeline?: string;
+      budget?: string;
+      currentWebsite?: string;
+      referenceLinks?: string;
       message: string;
     }
   | {
@@ -84,37 +98,70 @@ async function sendLeadEmail(submission: LeadSubmission) {
     throw new Error('RESEND_API_KEY is missing from the environment.');
   }
 
-  const selectedDetails = submission.kind === 'contact' ? submission.details?.filter(Boolean) ?? [] : [];
+  const selectedGoals = submission.kind === 'contact' ? submission.goals?.filter(Boolean) ?? [] : [];
+  const selectedPages = submission.kind === 'contact' ? submission.pages?.filter(Boolean) ?? [] : [];
+  const selectedFeatures = submission.kind === 'contact' ? submission.features?.filter(Boolean) ?? [] : [];
+  const selectedAssets = submission.kind === 'contact' ? submission.assets?.filter(Boolean) ?? [] : [];
+  const selectedScope = submission.kind === 'contact' ? submission.scope?.filter(Boolean) ?? [] : [];
+
+  const listBlock = (title: string, items: string[]) =>
+    items.length
+      ? ['', `${title}:`, ...items.map((item) => `- ${item}`)]
+      : [];
+
+  const htmlList = (items: string[]) => `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
 
   const email =
     submission.kind === 'contact'
       ? {
-          subject: `New website inquiry from ${submission.firstName} ${submission.lastName}`,
+          subject: `New quote request from ${submission.firstName} ${submission.lastName}`,
           text: [
-            'New contact form submission',
+            'New quote request',
             `Name: ${submission.firstName} ${submission.lastName}`,
+            submission.companyName ? `Company: ${submission.companyName}` : null,
             `Email: ${submission.email}`,
+            submission.phone ? `Phone: ${submission.phone}` : null,
+            submission.website ? `Website: ${submission.website}` : null,
+            submission.country ? `Country: ${submission.country}` : null,
+            submission.businessType ? `Business Type: ${submission.businessType}` : null,
             `Project Type: ${submission.projectType}`,
-            ...(selectedDetails.length
-              ? ['', 'Selected Details:', ...selectedDetails.map((detail) => `- ${detail}`)]
-              : []),
+            submission.stylePreference ? `Style Preference: ${submission.stylePreference}` : null,
+            submission.timeline ? `Timeline: ${submission.timeline}` : null,
+            submission.budget ? `Budget: ${submission.budget}` : null,
+            submission.currentWebsite ? `Current Website: ${submission.currentWebsite}` : null,
+            submission.referenceLinks ? `Reference Links: ${submission.referenceLinks}` : null,
+            ...listBlock('Project Scope', selectedScope),
+            ...listBlock('Goals', selectedGoals),
+            ...listBlock('Pages Needed', selectedPages),
+            ...listBlock('Features', selectedFeatures),
+            ...listBlock('Assets / Readiness', selectedAssets),
             '',
-            'Additional Notes:',
+            'Project Brief:',
             submission.message,
-          ].join('\n'),
+          ]
+            .filter((line): line is string => line !== null)
+            .join('\n'),
           html: `
-            <h2>New contact form submission</h2>
+            <h2>New quote request</h2>
             <p><strong>Name:</strong> ${escapeHtml(submission.firstName)} ${escapeHtml(submission.lastName)}</p>
+            ${submission.companyName ? `<p><strong>Company:</strong> ${escapeHtml(submission.companyName)}</p>` : ''}
             <p><strong>Email:</strong> ${escapeHtml(submission.email)}</p>
+            ${submission.phone ? `<p><strong>Phone:</strong> ${escapeHtml(submission.phone)}</p>` : ''}
+            ${submission.website ? `<p><strong>Website:</strong> ${escapeHtml(submission.website)}</p>` : ''}
+            ${submission.country ? `<p><strong>Country:</strong> ${escapeHtml(submission.country)}</p>` : ''}
+            ${submission.businessType ? `<p><strong>Business Type:</strong> ${escapeHtml(submission.businessType)}</p>` : ''}
             <p><strong>Project Type:</strong> ${escapeHtml(submission.projectType)}</p>
-            ${
-              selectedDetails.length
-                ? `<p><strong>Selected Details:</strong></p><ul>${selectedDetails
-                    .map((detail) => `<li>${escapeHtml(detail)}</li>`)
-                    .join('')}</ul>`
-                : ''
-            }
-            <p><strong>Additional Notes:</strong></p>
+            ${submission.stylePreference ? `<p><strong>Style Preference:</strong> ${escapeHtml(submission.stylePreference)}</p>` : ''}
+            ${submission.timeline ? `<p><strong>Timeline:</strong> ${escapeHtml(submission.timeline)}</p>` : ''}
+            ${submission.budget ? `<p><strong>Budget:</strong> ${escapeHtml(submission.budget)}</p>` : ''}
+            ${submission.currentWebsite ? `<p><strong>Current Website:</strong> ${escapeHtml(submission.currentWebsite)}</p>` : ''}
+            ${submission.referenceLinks ? `<p><strong>Reference Links:</strong> ${escapeHtml(submission.referenceLinks)}</p>` : ''}
+            ${selectedScope.length ? `<p><strong>Project Scope:</strong></p>${htmlList(selectedScope)}` : ''}
+            ${selectedGoals.length ? `<p><strong>Goals:</strong></p>${htmlList(selectedGoals)}` : ''}
+            ${selectedPages.length ? `<p><strong>Pages Needed:</strong></p>${htmlList(selectedPages)}` : ''}
+            ${selectedFeatures.length ? `<p><strong>Features:</strong></p>${htmlList(selectedFeatures)}` : ''}
+            ${selectedAssets.length ? `<p><strong>Assets / Readiness:</strong></p>${htmlList(selectedAssets)}` : ''}
+            <p><strong>Project Brief:</strong></p>
             <p style="white-space:pre-wrap;">${escapeHtml(submission.message)}</p>
           `,
         }

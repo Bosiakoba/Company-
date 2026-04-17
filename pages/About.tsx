@@ -57,7 +57,7 @@ const About = () => {
               The <span className="text-primary">architects</span> of tomorrow.
             </h1>
             <div className="grid lg:grid-cols-2 gap-12 items-end">
-              <p className="text-2xl text-foreground/70 leading-relaxed font-medium">
+              <p className="text-editorial text-2xl text-foreground/75">
                 Young Future Tech is a digital-first agency dedicated to crafting premium web experiences, robust mobile applications, and intelligent automation systems.
               </p>
               <div className="flex gap-12 border-l border-border pl-12 py-4">
@@ -87,7 +87,7 @@ const About = () => {
               <h2 className="text-5xl lg:text-7xl font-serif italic mb-12 leading-[0.9] tracking-tighter">
                 Bridging the gap between <span className="text-primary">vision</span> and <span className="text-primary">reality</span>.
               </h2>
-              <p className="text-xl text-foreground/70 mb-12 leading-relaxed max-w-lg font-medium">
+              <p className="text-editorial text-xl text-foreground/75 mb-12 max-w-lg">
                 We believe that technology should be an invisible force that empowers businesses. Our goal is to provide high-end, future-proof solutions that allow you to focus on what you do best while we handle the digital complexity.
               </p>
               <Button asChild size="lg" className="h-16 px-10 text-sm font-bold tracking-[0.1em] group">
@@ -114,7 +114,7 @@ const About = () => {
                       </div>
                       <h4 className="text-2xl font-serif italic">{value.title}</h4>
                     </div>
-                    <p className="text-foreground/60 leading-relaxed font-bold ml-16">
+                    <p className="text-editorial text-lg text-foreground/70 font-semibold ml-16">
                       {value.description}
                     </p>
                   </div>
@@ -142,21 +142,21 @@ const About = () => {
               <div className="p-12 border border-border hover:border-primary transition-colors bg-background/50 backdrop-blur-sm">
                 <div className="text-primary mb-8 font-mono">[01]</div>
                 <h3 className="text-3xl font-serif italic mb-6 text-primary">Strategic Depth</h3>
-                <p className="text-sm font-medium text-foreground/60 leading-relaxed">
+                <p className="text-editorial text-sm text-foreground/75">
                   Every project starts with deep research into your market, your competitors, and your users. We don't guess; we strategize based on data.
                 </p>
               </div>
               <div className="p-12 border border-border hover:border-primary transition-colors bg-background/50 backdrop-blur-sm">
                 <div className="text-primary mb-8 font-mono">[02]</div>
                 <h3 className="text-3xl font-serif italic mb-6 text-primary">Technical Excellence</h3>
-                <p className="text-sm font-medium text-foreground/60 leading-relaxed">
+                <p className="text-editorial text-sm text-foreground/75">
                   Our stack is curated for maximum performance and longevity. We use the latest technologies like Vite, React, and Flutter to ensure your product stays relevant.
                 </p>
               </div>
               <div className="p-12 border border-border hover:border-primary transition-colors bg-background/50 backdrop-blur-sm">
                 <div className="text-primary mb-8 font-mono">[03]</div>
                 <h3 className="text-3xl font-serif italic mb-6 text-primary">Artistic Precision</h3>
-                <p className="text-sm font-medium text-foreground/60 leading-relaxed">
+                <p className="text-editorial text-sm text-foreground/75">
                   We treat every pixel with the respect it deserves. Our design team focuses on editorial layouts and subtle motion to create a truly premium feel.
                 </p>
               </div>

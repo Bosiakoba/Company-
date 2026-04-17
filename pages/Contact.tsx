@@ -235,7 +235,7 @@ function ChecklistSection({
     <div className="space-y-5">
       <div>
         <label className="text-[10px] font-bold tracking-[0.2em] uppercase">{title}</label>
-        <p className="text-sm text-foreground/50 mt-2">{description}</p>
+        <p className="text-editorial text-sm text-foreground/60 mt-2">{description}</p>
       </div>
       <div className="grid sm:grid-cols-2 gap-4">
         {options.map((option) => {
@@ -254,7 +254,7 @@ function ChecklistSection({
                 onChange={() => onToggle(option)}
                 className="mt-1 h-4 w-4 border-2 border-foreground/30 text-primary focus:ring-primary"
               />
-              <span className="text-base leading-relaxed font-medium">{option}</span>
+              <span className="text-editorial text-base leading-relaxed text-foreground/90">{option}</span>
             </label>
           );
         })}
@@ -333,7 +333,7 @@ const ContactPage = () => {
             <h1 className="text-7xl lg:text-9xl font-serif italic font-medium leading-[0.85] tracking-[-0.04em] mb-12">
               Let’s scope <span className="text-primary">everything</span>.
             </h1>
-            <p className="text-2xl text-foreground/70 leading-relaxed max-w-3xl font-medium">
+            <p className="text-editorial text-2xl text-foreground/75 max-w-3xl">
               Share as much detail as you can. The more we understand about your goals, scope, and timeline, the better we can shape the right solution.
             </p>
           </motion.div>
@@ -388,7 +388,7 @@ const ContactPage = () => {
                   <section className="space-y-8">
                     <div>
                       <h3 className="text-2xl font-serif italic">Contact details</h3>
-                      <p className="text-sm text-foreground/50 mt-2">Start with the basics so we know who the project is for.</p>
+                      <p className="text-editorial text-sm text-foreground/60 mt-2">Start with the basics so we know who the project is for.</p>
                     </div>
                     <div className="grid sm:grid-cols-2 gap-8">
                       <div className="space-y-4">
@@ -438,7 +438,7 @@ const ContactPage = () => {
                   <section className="space-y-8 pt-4">
                     <div>
                       <h3 className="text-2xl font-serif italic">Project snapshot</h3>
-                      <p className="text-sm text-foreground/50 mt-2">Choose the main project type so we can ask the right questions.</p>
+                      <p className="text-editorial text-sm text-foreground/60 mt-2">Choose the main project type so we can ask the right questions.</p>
                     </div>
                     <div className="space-y-4">
                       <label className="text-[10px] font-bold tracking-[0.2em] uppercase">Project Type</label>
@@ -463,7 +463,7 @@ const ContactPage = () => {
                   <section className="space-y-8 pt-4">
                     <div>
                       <h3 className="text-2xl font-serif italic">Goals and structure</h3>
-                      <p className="text-sm text-foreground/50 mt-2">Tick everything that should be part of the experience.</p>
+                      <p className="text-editorial text-sm text-foreground/60 mt-2">Tick everything that should be part of the experience.</p>
                     </div>
 
                     <ChecklistSection
@@ -494,7 +494,7 @@ const ContactPage = () => {
                   <section className="space-y-8 pt-4">
                     <div>
                       <h3 className="text-2xl font-serif italic">Design, readiness, and timeline</h3>
-                      <p className="text-sm text-foreground/50 mt-2">This helps us understand the level of support you need.</p>
+                      <p className="text-editorial text-sm text-foreground/60 mt-2">This helps us understand the level of support you need.</p>
                     </div>
 
                     <ChecklistSection

@@ -25,7 +25,7 @@ const Portfolio = () => {
             <h1 className="text-7xl lg:text-9xl font-serif italic font-medium leading-[0.85] tracking-[-0.04em] mb-12">
               The <span className="text-primary">portfolio</span> of excellence.
             </h1>
-            <p className="text-2xl text-foreground/70 leading-relaxed max-w-3xl font-medium">
+            <p className="text-editorial text-2xl text-foreground/75 max-w-3xl">
               Live products and shipped work—ordered to highlight SaaS depth, platforms, and polish. No filler: every entry links to something you can open today.
             </p>
           </motion.div>
@@ -63,7 +63,7 @@ const Portfolio = () => {
                   <div>
                     <p className="text-[10px] font-bold tracking-[0.2em] text-primary mb-4 uppercase">{project.category}</p>
                     <h2 className="text-4xl lg:text-5xl font-serif italic mb-6 leading-tight">{project.title}</h2>
-                    <p className="text-lg text-foreground/60 leading-relaxed font-medium max-w-md mb-8">
+                    <p className="text-editorial text-lg text-foreground/75 max-w-md mb-8">
                       {project.description}
                     </p>
                     <Button asChild variant="outline" className="text-[10px] font-bold tracking-[0.2em] px-6 h-10 border-2 border-foreground hover:bg-foreground hover:text-background transition-all">

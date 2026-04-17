@@ -30,7 +30,7 @@ const Hero = () => {
               </h1>
               
               <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
-                <p className="text-lg text-foreground/70 leading-relaxed max-w-md font-medium">
+                <p className="text-editorial text-lg text-foreground/75 max-w-md">
                 Young Future Tech is a forward-thinking agency delivering basic and brand web apps, mobile and desktop solutions, and AI automation.
               </p>
                 <div className="flex gap-4">
@@ -53,7 +53,7 @@ const Hero = () => {
                   YFT School System — multi-tenant school platform (Flutter web)
                   <ExternalLink className="w-4 h-4 shrink-0 opacity-60 group-hover:opacity-100 transition-opacity" aria-hidden />
                 </a>
-                <p className="text-sm text-foreground/55 mt-3 font-medium leading-relaxed">
+                <p className="text-editorial text-sm text-foreground/65 mt-3">
                   Live web app today; dedicated apps for mobile, Windows, macOS, and Linux are in active development.
                 </p>
               </div>
@@ -100,7 +100,7 @@ const ServiceItem = ({ number, title, description, delay }: ServiceItemProps) =>
   >
     <div className="font-mono text-xs mb-12 text-primary group-hover:text-primary transition-colors">[{number}]</div>
     <h3 className="text-4xl font-serif italic mb-6 leading-tight">{title}</h3>
-    <p className="text-foreground/60 group-hover:text-background/60 leading-relaxed mb-10 text-sm font-medium">
+    <p className="text-editorial text-sm text-foreground/65 group-hover:text-background/70 mb-10">
       {description}
     </p>
     <Button asChild variant="link" className="p-0 h-auto text-[10px] font-bold tracking-[0.2em] text-foreground group-hover:text-background transition-colors">
@@ -172,7 +172,7 @@ const IndustrySection = () => {
             <h2 className="text-6xl lg:text-8xl font-serif italic mb-12 leading-[0.9] tracking-tighter">
               Specialized for <span className="text-primary">every</span> industry.
             </h2>
-            <p className="text-xl text-foreground/70 mb-16 leading-relaxed max-w-lg font-medium">
+            <p className="text-editorial text-xl text-foreground/75 mb-16 max-w-lg">
               We solve complex, industry-specific challenges with innovative digital tools designed for long-term scalability.
             </p>
             
@@ -182,7 +182,7 @@ const IndustrySection = () => {
                   <GraduationCap className="w-6 h-6" />
                 </div>
                 <h4 className="text-2xl font-serif italic">E-Learning</h4>
-                <p className="text-sm text-foreground/60 leading-relaxed font-medium">Interactive learning management systems and educational tools that make knowledge accessible.</p>
+                <p className="text-editorial text-sm text-foreground/70">Interactive learning management systems and educational tools that make knowledge accessible.</p>
               </div>
               
               <div className="space-y-6">
@@ -190,7 +190,7 @@ const IndustrySection = () => {
                   <ShoppingCart className="w-6 h-6" />
                 </div>
                 <h4 className="text-2xl font-serif italic">E-Commerce</h4>
-                <p className="text-sm text-foreground/60 leading-relaxed font-medium">Robust online stores with secure payments, inventory management, and seamless checkout flows.</p>
+                <p className="text-editorial text-sm text-foreground/70">Robust online stores with secure payments, inventory management, and seamless checkout flows.</p>
               </div>
             </div>
           </motion.div>
@@ -240,7 +240,7 @@ const FeaturedProjects = () => {
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif italic leading-[0.95] tracking-tighter mb-8">
             Built for <span className="text-primary">institutions</span>, teams, and growth.
           </h2>
-          <p className="text-lg text-foreground/65 leading-relaxed font-medium">
+          <p className="text-editorial text-lg text-foreground/75">
             Order is intentional: we open with multi-tenant SaaS and B2B platforms—what procurement and engineering teams look for first—then commerce and consumer-grade products.
           </p>
         </div>
@@ -262,7 +262,7 @@ const FeaturedProjects = () => {
                     </React.Fragment>
                   ))}
                 </h2>
-                <p className="text-lg lg:text-xl text-foreground/70 mb-8 lg:mb-12 leading-relaxed max-w-lg font-medium">
+                <p className="text-editorial text-lg lg:text-xl text-foreground/75 mb-8 lg:mb-12 max-w-lg">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-4 mb-8 lg:mb-12">

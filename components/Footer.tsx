@@ -44,7 +44,7 @@ const Footer = () => {
               </div>
               <span className="text-xl font-bold tracking-tighter font-serif italic">YOUNG FUTURE TECH</span>
             </Link>
-            <p className="text-foreground/50 leading-relaxed mb-10 font-medium text-sm">
+            <p className="text-editorial text-sm text-foreground/65 mb-10">
               Building the digital future through innovative technology and editorial design precision.
             </p>
             <div className="flex gap-6">
@@ -101,7 +101,7 @@ const Footer = () => {
 
           <div>
             <h4 className="text-[10px] font-bold tracking-[0.2em] uppercase mb-8">Newsletter</h4>
-            <p className="text-sm text-foreground/50 mb-8 font-medium">Stay updated with the latest tech trends and our agency news.</p>
+            <p className="text-editorial text-sm text-foreground/65 mb-8">Stay updated with the latest tech trends and our agency news.</p>
             <form onSubmit={handleNewsletterSubmit} className="space-y-3">
               <div className="flex gap-0 border-b-2 border-foreground/20 focus-within:border-primary transition-colors">
                 <input

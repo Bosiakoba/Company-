@@ -68,7 +68,7 @@ const Services = () => {
             <h1 className="text-7xl lg:text-9xl font-serif italic font-medium leading-[0.85] tracking-[-0.04em] mb-12">
               We build the <span className="text-primary">extraordinary</span>.
             </h1>
-            <p className="text-2xl text-foreground/70 leading-relaxed max-w-3xl font-medium">
+            <p className="text-editorial text-2xl text-foreground/75 max-w-3xl">
               A comprehensive suite of digital services designed to scale your business and elevate your brand's digital presence.
             </p>
           </motion.div>
@@ -96,7 +96,7 @@ const Services = () => {
                     <service.icon className="w-8 h-8" />
                   </div>
                   <h2 className="text-5xl lg:text-7xl font-serif italic mb-8">{service.title}</h2>
-                  <p className="text-xl text-foreground/60 leading-relaxed mb-12 font-medium">
+                  <p className="text-editorial text-xl text-foreground/75 mb-12">
                     {service.description}
                   </p>
                   <Button asChild size="lg" className="h-16 px-10 text-sm font-bold tracking-[0.1em] group">

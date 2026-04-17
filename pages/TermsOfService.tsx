@@ -18,7 +18,7 @@ const TermsOfService = () => {
             Terms <span className="text-primary">of Service</span>.
           </h1>
           
-          <div className="prose prose-invert max-w-none space-y-12 text-foreground/70 font-medium leading-relaxed">
+          <div className="prose prose-invert max-w-none space-y-12 text-foreground/75 leading-relaxed [&_p]:text-editorial [&_li]:text-editorial">
             <section>
               <h2 className="text-2xl font-serif italic text-foreground mb-6">Terms of Use</h2>
               <p>

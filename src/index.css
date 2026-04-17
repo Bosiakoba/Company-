@@ -134,3 +134,10 @@
   writing-mode: vertical-rl;
   text-orientation: mixed;
 }
+
+/* Long-form marketing / descriptive copy — Cormorant italic (editorial slant), vs Geist for UI chrome */
+@layer components {
+  .text-editorial {
+    @apply font-serif italic font-medium leading-relaxed tracking-[-0.02em];
+  }
+}

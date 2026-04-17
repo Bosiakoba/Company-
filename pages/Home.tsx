@@ -1,30 +1,10 @@
 import React from 'react';
-import { 
-  Smartphone, 
-  Globe, 
-  Monitor, 
-  Palette, 
-  GraduationCap, 
-  ShoppingCart, 
-  ChevronRight, 
-  ArrowRight,
-  CheckCircle2,
-  Mail,
-  Phone,
-  MapPin,
-  Twitter,
-  Github,
-  ExternalLink,
-  ArrowUpRight
-} from 'lucide-react';
+import { GraduationCap, ShoppingCart, ArrowRight, ExternalLink, ArrowUpRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
+import { featuredProjectsHome, YFT_SCHOOL_SYSTEM_URL } from '@/lib/projects';
 
 const Hero = () => {
   return (
@@ -60,6 +40,22 @@ const Hero = () => {
                     </Link>
                   </Button>
                 </div>
+              </div>
+
+              <div className="mt-12 max-w-2xl border-t border-border pt-8">
+                <p className="text-[10px] font-bold tracking-[0.2em] text-primary mb-3 uppercase">Flagship product</p>
+                <a
+                  href={YFT_SCHOOL_SYSTEM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex flex-wrap items-center gap-2 text-xl sm:text-2xl font-serif italic text-foreground hover:text-primary transition-colors"
+                >
+                  YFT School System — multi-tenant school platform (Flutter web)
+                  <ExternalLink className="w-4 h-4 shrink-0 opacity-60 group-hover:opacity-100 transition-opacity" aria-hidden />
+                </a>
+                <p className="text-sm text-foreground/55 mt-3 font-medium leading-relaxed">
+                  Live web app today; dedicated apps for mobile, Windows, macOS, and Linux are in active development.
+                </p>
               </div>
             </motion.div>
           </div>
@@ -234,62 +230,24 @@ const IndustrySection = () => {
 };
 
 const FeaturedProjects = () => {
-  const featured = [
-    {
-      title: "Easy Employ",
-      highlight: "Employ",
-      description: "A dedicated employment platform bridging the gap between teachers and schools. Designed to streamline the recruitment process within the education sector through efficient matching and real-time communication.",
-      tags: ["Web App", "Recruitment", "Education", "Platform"],
-      link: "https://easyemploy.vercel.app/",
-      linkText: "VISIT PLATFORM",
-      image: "/easyemploy.png"
-    },
-    {
-      title: "School Management",
-      highlight: "Management",
-      description: "A sophisticated, multi-tenant school management system designed for global educational institutions. Featuring powerful administrative tools, automated student tracking, and secure financial management modules.",
-      tags: ["SaaS", "Multi-Tenant", "ERP", "Education"],
-      link: "https://school-management-web-app.vercel.app/login",
-      linkText: "VISIT SAAS PLATFORM",
-      image: "/school-mgmt.png"
-    },
-    {
-      title: "Open Audio Web App",
-      highlight: "Web",
-      description: "The web-based counterpart to the Open Audio mobile platform. A fully responsive music streaming experience accessible from any browser, featuring high-fidelity playback and seamless library synchronization.",
-      tags: ["Web App", "React", "Music Streaming", "Responsive"],
-      link: "https://open-audio-mobile.vercel.app/",
-      linkText: "VISIT WEB APP",
-      image: "https://picsum.photos/seed/openaudio-web/800/1000"
-    },
-    {
-      title: "Open Audio",
-      highlight: "Audio",
-      description: "A professional music streaming application developed with Flutter. Stream high-quality audio, create personalized playlists, and discover new tracks globally.",
-      tags: ["Flutter", "Music Streaming", "Play Store", "Cross-Platform"],
-      link: "https://play.google.com/store/apps/details?id=com.youngfuturetech.musicstreamapp",
-      linkText: "VIEW ON PLAY STORE",
-      image: "/open-audio.png"
-    },
-    {
-      title: "Khadys Presale Palace",
-      highlight: "Palace",
-      description: "A premium preorder e-commerce platform designed for exclusive collections. Features a high-end editorial interface with seamless preorder management.",
-      tags: ["E-Commerce", "Web App", "Preorder", "Premium"],
-      link: "https://khadyspresalepalace.com/",
-      linkText: "VISIT WEBSITE",
-      image: "/khadys.png"
-    }
-  ];
+  const featured = featuredProjectsHome;
 
   return (
     <section className="py-32 border-b border-border">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-[10px] font-bold tracking-[0.2em] text-primary mb-24 uppercase text-center">Featured Projects</div>
-        
+        <div className="max-w-3xl mx-auto text-center mb-20 lg:mb-24">
+          <div className="text-[10px] font-bold tracking-[0.2em] text-primary mb-6 uppercase">Selected work</div>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif italic leading-[0.95] tracking-tighter mb-8">
+            Built for <span className="text-primary">institutions</span>, teams, and growth.
+          </h2>
+          <p className="text-lg text-foreground/65 leading-relaxed font-medium">
+            Order is intentional: we open with multi-tenant SaaS and B2B platforms—what procurement and engineering teams look for first—then commerce and consumer-grade products.
+          </p>
+        </div>
+
         <div className="space-y-40">
           {featured.map((project, i) => (
-            <div key={project.title} className={`grid lg:grid-cols-2 gap-12 lg:gap-24 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+            <div key={project.id} className={`grid lg:grid-cols-2 gap-12 lg:gap-24 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
               <motion.div
                 initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
                 whileInView={{ opacity: 1, x: 0 }}

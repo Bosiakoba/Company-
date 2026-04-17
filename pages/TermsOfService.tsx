@@ -75,7 +75,7 @@ const TermsOfService = () => {
             <section>
               <h2 className="text-2xl font-serif italic text-foreground mb-6">Contact Us</h2>
               <p>
-                If you have any questions regarding these Terms of Service, please contact us at legal@youngfuturetech.com.
+                If you have any questions regarding these Terms of Service, please contact us at hello@youngfuture.tech.
               </p>
             </section>
 

@@ -3,82 +3,11 @@ import { motion } from 'motion/react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { featuredProjectsHome } from '@/lib/projects';
 
 const Portfolio = () => {
-  const projects = [
-    {
-      title: "Learnix",
-      category: "E-LEARNING",
-      image: "/learnix.png",
-      description: "A comprehensive e-learning ecosystem tailored for higher education institutions. Streamlines course delivery and academic administrative workflows.",
-      link: "https://learnix-one.vercel.app/",
-      linkText: "VISIT PLATFORM"
-    },
-    {
-      title: "Easy Employ",
-      category: "RECRUITMENT PLATFORM",
-      image: "/easyemploy.png",
-      description: "A dedicated employment platform bridging the gap between teachers and schools. Modern, efficient, and designed to streamline the recruitment process in the education sector.",
-      link: "https://easyemploy.vercel.app/",
-      linkText: "VISIT PLATFORM"
-    },
-    {
-      title: "School Management",
-      category: "SaaS / ERP",
-      image: "/school-mgmt.png",
-      description: "A sophisticated, multi-tenant school management system designed for global educational institutions. Featuring powerful administrative tools, automated student tracking, and secure financial management modules.",
-      link: "https://school-management-web-app.vercel.app/login",
-      linkText: "VISIT SAAS PLATFORM"
-    },
-    {
-      title: "Open Audio Web App",
-      category: "WEB APPLICATION",
-      image: "https://picsum.photos/seed/openaudio-web/1200/800",
-      description: "The web-based counterpart to the Open Audio mobile platform. A fully responsive music streaming experience accessible from any browser, featuring high-fidelity playback and seamless library synchronization.",
-      link: "https://open-audio-mobile.vercel.app/",
-      linkText: "VISIT WEB APP"
-    },
-    {
-      title: "Khadys Presale Palace",
-      category: "E-COMMERCE WEB APP",
-      image: "/khadys.png",
-      description: "A premium preorder e-commerce platform designed for exclusive collections. Features a high-end editorial interface with seamless preorder management.",
-      link: "https://khadyspresalepalace.com/",
-      linkText: "VISIT WEBSITE"
-    },
-    {
-      title: "Open Audio",
-      category: "MUSIC STREAMING APP",
-      image: "/open-audio.png",
-      description: "A professional music streaming application developed with Flutter. Stream high-quality audio, create personalized playlists, and discover new tracks globally.",
-      link: "https://play.google.com/store/apps/details?id=com.youngfuturetech.musicstreamapp",
-      linkText: "VIEW ON PLAY STORE"
-    },
-    {
-      title: "E-Learning",
-      category: "E-LEARNING PLATFORM",
-      image: "https://picsum.photos/seed/vanguard/1200/800",
-      description: "A comprehensive learning management system for a global education provider, featuring interactive course modules and real-time student tracking."
-    },
-    {
-      title: "Luxe E-Commerce",
-      category: "BRAND WEB APP",
-      image: "https://picsum.photos/seed/luxe/1200/800",
-      description: "An editorial-style e-commerce platform for a luxury fashion brand, focusing on high-end visual storytelling and seamless checkout experiences."
-    },
-    {
-      title: "Quantum Mobile",
-      category: "MOBILE APPLICATION",
-      image: "https://picsum.photos/seed/quantum/1200/800",
-      description: "A high-performance mobile app for a fintech startup, providing real-time market data and secure crypto-asset management."
-    },
-    {
-      title: "Aura Brand Identity",
-      category: "BRAND IDENTITY",
-      image: "https://picsum.photos/seed/aura/1200/800",
-      description: "A complete brand identity overhaul for a wellness startup, including logo design, typography systems, and digital brand guidelines."
-    }
-  ];
+  const projects = featuredProjectsHome;
 
   return (
     <div className="pt-32">
@@ -97,7 +26,7 @@ const Portfolio = () => {
               The <span className="text-primary">portfolio</span> of excellence.
             </h1>
             <p className="text-2xl text-foreground/70 leading-relaxed max-w-3xl font-medium">
-              A curated selection of our most impactful digital projects, where engineering meets editorial design.
+              Live products and shipped work—ordered to highlight SaaS depth, platforms, and polish. No filler: every entry links to something you can open today.
             </p>
           </motion.div>
         </div>
@@ -109,19 +38,14 @@ const Portfolio = () => {
           <div className="grid md:grid-cols-2 gap-24">
             {projects.map((project, i) => (
               <motion.div 
-                key={project.title}
+                key={project.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.8 }}
                 className="group"
               >
-                <a 
-                  href={project.link || "#"} 
-                  target={project.link ? "_blank" : undefined} 
-                  rel={project.link ? "noopener noreferrer" : undefined}
-                  className="block"
-                >
+                <a href={project.link} target="_blank" rel="noopener noreferrer" className="block">
                   <div className="aspect-[16/10] bg-muted mb-10 overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-700">
                     <img 
                       src={project.image} 
@@ -142,13 +66,11 @@ const Portfolio = () => {
                     <p className="text-lg text-foreground/60 leading-relaxed font-medium max-w-md mb-8">
                       {project.description}
                     </p>
-                    {project.link && (
-                      <Button asChild variant="outline" className="text-[10px] font-bold tracking-[0.2em] px-6 h-10 border-2 border-foreground hover:bg-foreground hover:text-background transition-all">
-                        <a href={project.link} target="_blank" rel="noopener noreferrer">
-                          {project.linkText || "VIEW PROJECT"} <ExternalLink className="ml-2 w-3 h-3" />
-                        </a>
-                      </Button>
-                    )}
+                    <Button asChild variant="outline" className="text-[10px] font-bold tracking-[0.2em] px-6 h-10 border-2 border-foreground hover:bg-foreground hover:text-background transition-all">
+                      <a href={project.link} target="_blank" rel="noopener noreferrer">
+                        {project.linkText} <ExternalLink className="ml-2 w-3 h-3" />
+                      </a>
+                    </Button>
                   </div>
                 </div>
               </motion.div>
@@ -164,9 +86,9 @@ const Portfolio = () => {
             Ready to build your <span className="text-primary">extraordinary</span> project?
           </h2>
           <Button asChild size="lg" className="h-20 px-16 text-lg font-bold tracking-[0.1em] group bg-primary hover:bg-primary/90">
-            <a href="/contact">
+            <Link to="/contact">
               START PROJECT <ArrowUpRight className="ml-2 w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </a>
+            </Link>
           </Button>
         </div>
       </section>

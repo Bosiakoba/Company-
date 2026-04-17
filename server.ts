@@ -53,9 +53,13 @@ class ResendApiError extends Error {
   }
 }
 
-const RECEIVER_EMAIL = process.env.CONTACT_RECEIVER_EMAIL || 'receiver@example.com';
+/** Inbox for Resend — set in `.env.local` (never commit real values). */
+const RECEIVER_EMAIL = process.env.CONTACT_RECEIVER_EMAIL?.trim();
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
+
+/** Reject oversized JSON bodies (abuse / accidental huge payloads). */
+const MAX_BODY_BYTES = 256 * 1024;
 
 function escapeHtml(value: string) {
   return value
@@ -75,9 +79,16 @@ function sendJson(res: ServerResponse, statusCode: number, payload: Record<strin
 function readBody(req: IncomingMessage) {
   return new Promise<string>((resolve, reject) => {
     const chunks: Buffer[] = [];
+    let total = 0;
 
     req.on('data', (chunk) => {
-      chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+      const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+      total += buf.length;
+      if (total > MAX_BODY_BYTES) {
+        reject(new Error('PAYLOAD_TOO_LARGE'));
+        return;
+      }
+      chunks.push(buf);
     });
 
     req.on('end', () => {
@@ -88,14 +99,28 @@ function readBody(req: IncomingMessage) {
   });
 }
 
-async function readJson<T>(req: IncomingMessage): Promise<T> {
-  const raw = await readBody(req);
-  return raw ? (JSON.parse(raw) as T) : ({} as T);
+async function readJson<T>(req: IncomingMessage): Promise<T | null> {
+  try {
+    const raw = await readBody(req);
+    if (!raw) {
+      return null;
+    }
+    return JSON.parse(raw) as T;
+  } catch (error) {
+    if (error instanceof Error && error.message === 'PAYLOAD_TOO_LARGE') {
+      throw error;
+    }
+    return null;
+  }
 }
 
 async function sendLeadEmail(submission: LeadSubmission) {
   if (!RESEND_API_KEY) {
     throw new Error('RESEND_API_KEY is missing from the environment.');
+  }
+
+  if (!RECEIVER_EMAIL) {
+    throw new Error('CONTACT_RECEIVER_EMAIL is missing from the environment.');
   }
 
   const selectedGoals = submission.kind === 'contact' ? submission.goals?.filter(Boolean) ?? [] : [];
@@ -203,6 +228,11 @@ async function handleLeadRequest(req: IncomingMessage, res: ServerResponse) {
   try {
     const submission = await readJson<LeadSubmission>(req);
 
+    if (submission === null) {
+      sendJson(res, 400, { success: false, error: 'Invalid form submission.' });
+      return;
+    }
+
     if (!submission || typeof submission !== 'object' || !('kind' in submission)) {
       sendJson(res, 400, { success: false, error: 'Invalid form submission.' });
       return;
@@ -234,6 +264,11 @@ async function handleLeadRequest(req: IncomingMessage, res: ServerResponse) {
 
     sendJson(res, 400, { success: false, error: 'Unsupported submission type.' });
   } catch (error) {
+    if (error instanceof Error && error.message === 'PAYLOAD_TOO_LARGE') {
+      sendJson(res, 413, { success: false, error: 'Request body is too large.' });
+      return;
+    }
+
     const message = error instanceof Error ? error.message : 'Unable to send the form right now.';
 
     if (error instanceof ResendApiError) {
@@ -289,11 +324,27 @@ function serveFile(filePath: string, res: ServerResponse) {
 
 function servePreviewRequest(req: IncomingMessage, res: ServerResponse) {
   const requestUrl = new URL(req.url || '/', 'http://localhost');
-  const pathname = decodeURIComponent(requestUrl.pathname);
-  const filePath = pathname === '/' ? path.join(DIST_DIR, 'index.html') : path.join(DIST_DIR, pathname);
+  let pathname = requestUrl.pathname;
 
-  if (pathname !== '/' && fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-    serveFile(filePath, res);
+  try {
+    pathname = decodeURIComponent(pathname);
+  } catch {
+    pathname = '/';
+  }
+
+  if (pathname === '/') {
+    serveFile(path.join(DIST_DIR, 'index.html'), res);
+    return;
+  }
+
+  const relative = pathname.replace(/^\/+/, '');
+  const candidate = path.resolve(DIST_DIR, relative);
+  const distRoot = path.resolve(DIST_DIR);
+  const relToDist = path.relative(distRoot, candidate);
+  const isInside = !relToDist.startsWith('..') && !path.isAbsolute(relToDist);
+
+  if (isInside && fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+    serveFile(candidate, res);
     return;
   }
 

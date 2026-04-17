@@ -63,7 +63,7 @@ const PrivacyPolicy = () => {
             <section>
               <h2 className="text-2xl font-serif italic text-foreground mb-6">Your Rights</h2>
               <p>
-                You have the right to access, correct, or delete your personal information. If you wish to exercise these rights, please contact us at hello@youngfuturetech.com.
+                You have the right to access, correct, or delete your personal information. If you wish to exercise these rights, please contact us at hello@youngfuture.tech.
               </p>
             </section>
 

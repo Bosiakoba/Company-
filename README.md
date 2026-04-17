@@ -18,6 +18,8 @@ Agency marketing site: React, Vite, Tailwind. Contact and newsletter flows use a
    - `RESEND_FROM_EMAIL` — a sender Resend has verified
    - `CONTACT_RECEIVER_EMAIL` — your inbox for leads
 
+   Never commit `.env.local` or real API keys. `.gitignore` ignores `.env*` except `.env.example` (placeholders only). If a key was ever pushed, rotate it in the provider (e.g. Resend) and rewrite Git history; then force-push.
+
 3. **Run**
 
    ```bash

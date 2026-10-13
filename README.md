@@ -1,6 +1,6 @@
 # Young Future Tech
 
-Agency marketing site: React, Vite, Tailwind. Contact and newsletter flows use a small Node server (`server.ts`) plus [Resend](https://resend.com) for email.
+Agency marketing site: React, Vite, Tailwind. Contact and newsletter flows use a small Node server (`server.ts`) plus [Resend](https://bosiakoba.github.io) for email.
 
 ## Local development
 
